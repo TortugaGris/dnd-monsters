@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "dnd-monsters:build:production"
+              "buildTarget": "dnd-monsters:build:production"
             },
             "development": {
-              "browserTarget": "dnd-monsters:build:development"
+              "buildTarget": "dnd-monsters:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dnd-monsters:build"
+            "buildTarget": "dnd-monsters:build"
           }
         },
         "test": {
