@@ -5,6 +5,7 @@ import { TitleCasePipe } from '@angular/common';
 import { MonsterHealthComponent } from './ui/monster-health/monster-health.component';
 import { MonsterSpeedComponent } from './ui/monster-speed/monster-speed.component';
 import { MonsterSavingThrowsComponent } from './ui/monster-saving-throws/monster-saving-throws.component';
+import { MonsterProficienciesComponent } from './ui/monster-proficiencies/monster-proficiencies.component';
 
 @Component({
   selector: 'app-monster',
@@ -14,6 +15,7 @@ import { MonsterSavingThrowsComponent } from './ui/monster-saving-throws/monster
     MonsterHealthComponent,
     MonsterSpeedComponent,
     MonsterSavingThrowsComponent,
+    MonsterProficienciesComponent,
   ],
   template: `
     @if(monster(); as monster) {
@@ -39,6 +41,14 @@ import { MonsterSavingThrowsComponent } from './ui/monster-saving-throws/monster
             [wis]="monster.wisdom"
             [char]="monster.charisma"
             [proficiencies]="monster.proficiencies"
+          />
+          <app-monster-proficiencies
+            [damageImmunities]="monster.damage_immunities"
+            [damageResistances]="monster.damage_resistances"
+            [damageVulnerabilities]="monster.damage_vulnerabilities"
+            [conditionImmunities]="monster.condition_immunities"
+            [senses]="monster.senses"
+            [languages]="monster.languages"
           />
         </div>
         <div class="flex-1">
