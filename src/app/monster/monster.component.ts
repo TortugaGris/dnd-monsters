@@ -101,6 +101,18 @@ import { ActionCardComponent } from '../shared/ui/action-card/action-card.compon
               />
             }
           }
+          @if(monster.legendary_actions && monster.legendary_actions.length > 0) {
+            <h2 class="text-2xl font-bold my-4">Legendary Actions</h2>
+            @for(action of monster.legendary_actions; track action.name) {
+              <app-action-card
+                [name]="action.name"
+                [desc]="action.desc"
+                [attackBonus]="action.attack_bonus"
+                [damage]="action.damage"
+                [dc]="action.dc"
+              />
+            }
+          }
         </div>
       </div>
     }
