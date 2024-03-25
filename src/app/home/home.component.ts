@@ -3,6 +3,9 @@ import { RouterModule } from '@angular/router';
 import { MonsterService } from './data-access/monster.service';
 import { JsonPipe } from '@angular/common';
 import { MonsterComponent } from '../monster/monster.component';
+import { DiceRollerComponent } from '../dice-roller/dice-roller.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-home',
@@ -11,9 +14,16 @@ import { MonsterComponent } from '../monster/monster.component';
     RouterModule,
     JsonPipe,
     MonsterComponent,
+    DiceRollerComponent,
+    FontAwesomeModule,
   ],
   template: `
     <div class="w-full h-screen flex">
+      @if(!isOpen){
+        <button class="border-2 py-1 px-2 border-gray-800 rounded m-2 text-gray-800 absolute right-0" (click)="isOpen = !isOpen">
+          <fa-icon [icon]="icons.arrow"></fa-icon>
+        </button>
+      }
       <div class="w-full overflow-scroll no-scrollbar">
         <main class="container mx-auto">
           @if(monsterItem(); as monsterItem) {
@@ -27,6 +37,7 @@ import { MonsterComponent } from '../monster/monster.component';
           licensed under <a class="underline" href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
         </div>
       </div>
+      <app-dice-roller [(isOpen)]="isOpen"/>
     </div>
   `,
   styles: [],
@@ -35,6 +46,10 @@ export class HomeComponent {
   monsters = this.monsterService.monsters;
   monsterList = this.monsterService.monsterList;
   isLoaded = this.monsterService.isLoaded;
+  isOpen = true;
+  icons = {
+    arrow: faArrowLeft,
+  }
 
   url: string | null = null;
   randomUrl = computed(() => {
