@@ -3,6 +3,7 @@ import { Monster } from '../home/interfaces/monster.interface';
 import {API_URL} from '../home/data-access/monster.service';
 import { TitleCasePipe } from '@angular/common';
 import { MonsterHealthComponent } from './ui/monster-health/monster-health.component';
+import { MonsterSpeedComponent } from './ui/monster-speed/monster-speed.component';
 
 @Component({
   selector: 'app-monster',
@@ -10,6 +11,7 @@ import { MonsterHealthComponent } from './ui/monster-health/monster-health.compo
   imports: [
     TitleCasePipe,
     MonsterHealthComponent,
+    MonsterSpeedComponent,
   ],
   template: `
     @if(monster(); as monster) {
@@ -23,6 +25,9 @@ import { MonsterHealthComponent } from './ui/monster-health/monster-health.compo
             [armorClass]="monster.armor_class"
             [hitPointsRoll]="monster.hit_points_roll"
             [hitPoints]="monster.hit_points"
+          />
+          <app-monster-speed
+            [speed]="monster.speed"
           />
         </div>
         <div class="flex-1">
