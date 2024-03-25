@@ -10,7 +10,7 @@ export interface MonstersState {
   error: string | null;
 }
 
-const API_URL = 'https://www.dnd5eapi.co';
+export const API_URL = 'https://www.dnd5eapi.co';
 const MONSTER_LIST_URL = API_URL + '/api/monsters';
 
 @Injectable({
