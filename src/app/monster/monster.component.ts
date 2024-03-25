@@ -6,6 +6,7 @@ import { MonsterHealthComponent } from './ui/monster-health/monster-health.compo
 import { MonsterSpeedComponent } from './ui/monster-speed/monster-speed.component';
 import { MonsterSavingThrowsComponent } from './ui/monster-saving-throws/monster-saving-throws.component';
 import { MonsterProficienciesComponent } from './ui/monster-proficiencies/monster-proficiencies.component';
+import { MonsterSkillsComponent } from './ui/monster-skills/monster-skills.component';
 
 @Component({
   selector: 'app-monster',
@@ -16,6 +17,7 @@ import { MonsterProficienciesComponent } from './ui/monster-proficiencies/monste
     MonsterSpeedComponent,
     MonsterSavingThrowsComponent,
     MonsterProficienciesComponent,
+    MonsterSkillsComponent,
   ],
   template: `
     @if(monster(); as monster) {
@@ -49,6 +51,15 @@ import { MonsterProficienciesComponent } from './ui/monster-proficiencies/monste
             [conditionImmunities]="monster.condition_immunities"
             [senses]="monster.senses"
             [languages]="monster.languages"
+          />
+          <app-monster-skills
+            [str]="monster.strength"
+            [dex]="monster.dexterity"
+            [con]="monster.constitution"
+            [int]="monster.intelligence"
+            [wis]="monster.wisdom"
+            [char]="monster.charisma"
+            [proficiencies]="monster.proficiencies"
           />
         </div>
         <div class="flex-1">
