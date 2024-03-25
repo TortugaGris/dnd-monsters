@@ -7,6 +7,7 @@ import { MonsterSpeedComponent } from './ui/monster-speed/monster-speed.componen
 import { MonsterSavingThrowsComponent } from './ui/monster-saving-throws/monster-saving-throws.component';
 import { MonsterProficienciesComponent } from './ui/monster-proficiencies/monster-proficiencies.component';
 import { MonsterSkillsComponent } from './ui/monster-skills/monster-skills.component';
+import { ActionCardComponent } from '../shared/ui/action-card/action-card.component';
 
 @Component({
   selector: 'app-monster',
@@ -18,6 +19,7 @@ import { MonsterSkillsComponent } from './ui/monster-skills/monster-skills.compo
     MonsterSavingThrowsComponent,
     MonsterProficienciesComponent,
     MonsterSkillsComponent,
+    ActionCardComponent,
   ],
   template: `
     @if(monster(); as monster) {
@@ -63,6 +65,18 @@ import { MonsterSkillsComponent } from './ui/monster-skills/monster-skills.compo
           />
         </div>
         <div class="flex-1">
+          @if(monster.special_abilities && monster.special_abilities.length > 0) {
+            <h2 class="text-2xl font-bold my-4">Special Abilities</h2>
+            @for(specialAbility of monster.special_abilities; track specialAbility.name) {
+              <app-action-card
+                [name]="specialAbility.name"
+                [desc]="specialAbility.desc"
+                [attackBonus]="specialAbility.attack_bonus"
+                [damage]="specialAbility.damage"
+                [dc]="specialAbility.dc"
+              />
+            }
+          }
         </div>
       </div>
     }
