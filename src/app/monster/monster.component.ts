@@ -4,6 +4,7 @@ import {API_URL} from '../home/data-access/monster.service';
 import { TitleCasePipe } from '@angular/common';
 import { MonsterHealthComponent } from './ui/monster-health/monster-health.component';
 import { MonsterSpeedComponent } from './ui/monster-speed/monster-speed.component';
+import { MonsterSavingThrowsComponent } from './ui/monster-saving-throws/monster-saving-throws.component';
 
 @Component({
   selector: 'app-monster',
@@ -12,6 +13,7 @@ import { MonsterSpeedComponent } from './ui/monster-speed/monster-speed.componen
     TitleCasePipe,
     MonsterHealthComponent,
     MonsterSpeedComponent,
+    MonsterSavingThrowsComponent,
   ],
   template: `
     @if(monster(); as monster) {
@@ -28,6 +30,15 @@ import { MonsterSpeedComponent } from './ui/monster-speed/monster-speed.componen
           />
           <app-monster-speed
             [speed]="monster.speed"
+          />
+          <app-monster-saving-throws
+            [str]="monster.strength"
+            [dex]="monster.dexterity"
+            [con]="monster.constitution"
+            [int]="monster.intelligence"
+            [wis]="monster.wisdom"
+            [char]="monster.charisma"
+            [proficiencies]="monster.proficiencies"
           />
         </div>
         <div class="flex-1">
