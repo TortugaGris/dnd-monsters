@@ -12,14 +12,14 @@ export interface Monster {
   constitution?: number;
   dexterity?: number;
   intelligence?: number;
-  stregth?: number;
+  strength?: number;
   wisdom?: number;
   image?: string;
   size?: string;
   type?: string;
   subtype?: string;
-  alignments?: string;
-  armor_class?: object[];
+  alignment?: string;
+  armor_class?: ArmorClass[];
   hit_points?: number;
   hit_dice?: string;
   hit_points_roll?: string;
@@ -50,7 +50,7 @@ export interface Action {
   attack_bonus?: number;
   dc?: DC;
   attacks?: Attack[];
-  damage?: Damage;
+  damage?: Damage[];
 }
 
 export interface Choice {
@@ -84,8 +84,8 @@ export interface Attack {
 }
 
 export interface Damage {
-  damage_dice?: string;
-  damage_type?: APIReference;
+  damage_dice: string;
+  damage_type: APIReference;
 }
 
 export interface Proficiency {
@@ -105,7 +105,7 @@ export interface SpecialAbilities {
   name?: string;
   desc?: string;
   attack_bonus?: number;
-  damage?: Damage;
+  damage?: Damage[];
   dc?: DC;
   spellcasting?: SpellCasting;
   usage?: Usage;
@@ -140,4 +140,9 @@ export interface Speed {
   climb?: string;
   fly?: string;
   swim?: string;
+}
+
+export interface ArmorClass {
+  type: string;
+  value: number;
 }
