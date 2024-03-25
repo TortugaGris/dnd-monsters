@@ -89,6 +89,18 @@ import { ActionCardComponent } from '../shared/ui/action-card/action-card.compon
               />
             }
           }
+          @if(monster.reactions && monster.reactions.length > 0) {
+            <h2 class="text-2xl font-bold my-4">Reactions</h2>
+            @for(reaction of monster.reactions; track reaction.name) {
+              <app-action-card
+                [name]="reaction.name"
+                [desc]="reaction.desc"
+                [attackBonus]="reaction.attack_bonus"
+                [damage]="reaction.damage"
+                [dc]="reaction.dc"
+              />
+            }
+          }
         </div>
       </div>
     }
