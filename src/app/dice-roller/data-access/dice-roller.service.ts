@@ -10,6 +10,19 @@ export interface DiceRollState {
   error: string | null;
 }
 
+export interface AddDiceRoll {
+  numDices: number,
+  sides: number,
+  addedNum: number,
+  type: string | null,
+}
+
+export interface AddDiceRollItem {
+  name: string,
+  rollName: string,
+  diceRoll: AddDiceRoll[],
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +40,7 @@ export class DiceRollerService {
 
   //sources
   roll$ = new Subject<string>();
+  add$ = new Subject<AddDiceRollItem>();
 
   constructor() {
     //reducers
@@ -35,7 +49,7 @@ export class DiceRollerService {
       map((roll) => {
         const diceRollItems: DiceRollItem = {
           uuid: v4(),
-          name: 'Player',
+          name: 'Dice Roll',
           rollName: roll,
           diceRoll: [],
         };
@@ -47,12 +61,12 @@ export class DiceRollerService {
           if(match[2] !== undefined) {
             const numDices = match[1] ? parseInt(match[1]) : 1;
             const sides = parseInt(match[2]);
-            const addedNum = match[3] ? parseInt(match[3]) : null;
+            const addedNum = match[3] ? parseInt(match[3]) : 0;
             let sum = 0;
             for (let i = 0; i < numDices; i++) {
               sum = sum + Math.floor(sides*Math.random()+1);
             }
-            if(addedNum !== null) sum = sum + addedNum;
+            sum = sum + addedNum;
             diceRollItems.diceRoll.push({
                 roll: match[0],
                 value: sum,
@@ -66,6 +80,39 @@ export class DiceRollerService {
             });
           }
         }
+        return diceRollItems;
+      })
+    ).subscribe((diceRollItem) =>
+      this.state.update((state) => (
+        {
+          ...state,
+          diceRollList: [diceRollItem, ...state.diceRollList],
+        }
+      ))
+    );
+
+    this.add$.pipe(
+      takeUntilDestroyed(),
+      map((addDiceRollItem) => {
+        const diceRollItems: DiceRollItem = {
+          uuid: v4(),
+          name: addDiceRollItem.name,
+          rollName: addDiceRollItem.rollName,
+          diceRoll: [],
+        };
+        addDiceRollItem.diceRoll.forEach((dr) => {
+          let sum = 0;
+          for (let i = 0; i < dr.numDices; i++) {
+            sum = sum + Math.floor(dr.sides*Math.random()+1);
+          }
+          sum = sum + dr.addedNum;
+          const addedNum = dr.addedNum > 0 ? '+'+dr.addedNum.toString() : (dr.addedNum < 0 ? dr.addedNum.toString() : '');
+          diceRollItems.diceRoll.push({
+              roll: dr.numDices.toString()+'d'+dr.sides.toString()+addedNum,
+              value: sum,
+              type: dr.type,
+          });
+        });
         return diceRollItems;
       })
     ).subscribe((diceRollItem) =>
