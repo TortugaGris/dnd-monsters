@@ -24,7 +24,6 @@ export class MonsterService {
     error: null,
   });
 
-
   //selectors
   monsters = signal<Monster[]>([]);
   monsterList = computed(() => this.state().monsterList);
