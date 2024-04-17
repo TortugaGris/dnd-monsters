@@ -4,6 +4,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { diceRollValidator } from './utils/dice-roller.validator';
+import { DiceRollerService } from './data-access/dice-roller.service';
 
 @Component({
   selector: 'app-dice-roller',
@@ -21,7 +22,28 @@ import { diceRollValidator } from './utils/dice-roller.validator';
             <fa-icon [icon]="icons.arrow"></fa-icon>
           </button>
         </div>
-        <div class="h-full">
+        <div class="h-full overflow-y-scroll p-4 flex flex-col-reverse gap-4">
+          @for(diceRoll of diceRollerService.diceRollList(); track diceRoll.uuid) {
+            <div class="bg-gray-800 p-4 rounded-lg">
+              <div class="text-gray-500">{{diceRoll.name}}</div>
+              <div class="font-bold text-center text-lg pb-2 border-b-gray-700 border-b">{{diceRoll.rollName}}</div>
+              <div class="flex flex-wrap mt-4 justify-center gap-8">
+                @for(dr of diceRoll.diceRoll; track $index) {
+                  <div class="flex flex-col">
+                    <div class="text-gray-500 text-center">
+                      {{dr.roll}}
+                    </div>
+                    <div class="text-5xl font-bold text-center">
+                      {{dr.value}}
+                    </div>
+                    <div class="text-gray-400 text-center">
+                      {{dr.type}}
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          }
         </div>
         <div class="flex p-4 border-t border-gray-800">
           <input
@@ -48,11 +70,21 @@ export class DiceRollerComponent {
     diceRollValidator(),
   ]);
 
+  constructor(
+    public readonly diceRollerService: DiceRollerService,
+  ) {
+
+  }
+
   toggleOpen() {
     this.isOpen.update((val) => !val);
   }
 
   roll() {
+    if(this.diceRoll.invalid) return;
+    const diceRoll = this.diceRoll.value;
+    console.log('Component: ', diceRoll);
+    if(diceRoll !== null) this.diceRollerService.roll$.next(diceRoll);
     this.diceRoll.setValue('');
   }
 }
