@@ -68,6 +68,7 @@ import { ActionCardComponent } from '../shared/ui/action-card/action-card.compon
             <h2 class="text-2xl font-bold my-4">Special Abilities</h2>
             @for(specialAbility of monster.special_abilities; track specialAbility.name) {
               <app-action-card
+                [creature]="monster.name"
                 [name]="specialAbility.name"
                 [desc]="specialAbility.desc"
                 [attackBonus]="specialAbility.attack_bonus"
@@ -80,6 +81,7 @@ import { ActionCardComponent } from '../shared/ui/action-card/action-card.compon
             <h2 class="text-2xl font-bold my-4">Actions</h2>
             @for(action of monster.actions; track action.name) {
               <app-action-card
+                [creature]="monster.name"
                 [name]="action.name"
                 [desc]="action.desc"
                 [attackBonus]="action.attack_bonus"
@@ -92,6 +94,7 @@ import { ActionCardComponent } from '../shared/ui/action-card/action-card.compon
             <h2 class="text-2xl font-bold my-4">Reactions</h2>
             @for(reaction of monster.reactions; track reaction.name) {
               <app-action-card
+                [creature]="monster.name"
                 [name]="reaction.name"
                 [desc]="reaction.desc"
                 [attackBonus]="reaction.attack_bonus"
@@ -104,6 +107,7 @@ import { ActionCardComponent } from '../shared/ui/action-card/action-card.compon
             <h2 class="text-2xl font-bold my-4">Legendary Actions</h2>
             @for(action of monster.legendary_actions; track action.name) {
               <app-action-card
+                [creature]="monster.name"
                 [name]="action.name"
                 [desc]="action.desc"
                 [attackBonus]="action.attack_bonus"
