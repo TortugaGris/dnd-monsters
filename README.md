@@ -1,9 +1,7 @@
 # D&D Monsters
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/tortugagris/dnd-monsters)
-
 ![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/tortugagris/dnd-monsters/%40angular%2Fcore)
-
 ![GitHub License](https://img.shields.io/github/license/tortugagris/dnd-monsters)
 
 Web Application built with Angular that allows you to roll saving throws, skills and actions of a random monster, and make custom dice rolls.
