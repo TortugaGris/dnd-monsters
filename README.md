@@ -6,7 +6,7 @@
 
 Web Application built with Angular that allows you to roll saving throws, skills and actions of a random monster, and make custom dice rolls.
 
-## ![Demo](tortugagris.github.io/dnd-monsters/)
+<span style="font-size:3rem;">![Demo](tortugagris.github.io/dnd-monsters/)</span>
 
 ## Next Features 
 - Search bar to search for monsters.
