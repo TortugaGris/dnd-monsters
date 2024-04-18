@@ -7,6 +7,7 @@ import { DiceRollItem } from '../interfaces/dice-roll-item.interface';
 
 export interface DiceRollState {
   diceRollList: DiceRollItem[];
+  isOpen: boolean;
   error: string | null;
 }
 
@@ -29,15 +30,18 @@ export class DiceRollerService {
   //state
   private state = signal<DiceRollState>({
     diceRollList: [],
+    isOpen: false,
     error: null,
   });
 
   //selectors
   diceRollList = computed(() => this.state().diceRollList);
+  isOpen = computed(() => this.state().isOpen);
   error = computed(() => this.state().error);
 
   //sources
   roll$ = new Subject<AddDiceRollItem>();
+  setOpen$ = new Subject<boolean>();
 
   constructor() {
     //reducers
@@ -83,6 +87,18 @@ export class DiceRollerService {
         {
           ...state,
           diceRollList: [diceRollItem, ...state.diceRollList],
+          isOpen: true,
+        }
+      ))
+    );
+
+    this.setOpen$.pipe(
+      takeUntilDestroyed(),
+    ).subscribe((isOpen) =>
+      this.state.update((state) => (
+        {
+          ...state,
+          isOpen,
         }
       ))
     );
