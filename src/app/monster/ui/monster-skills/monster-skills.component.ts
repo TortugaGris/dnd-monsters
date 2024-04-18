@@ -13,6 +13,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
     <div class="flex flex-wrap gap-4">
       @if(acrobatics(); as acrobatics) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Acrobatics"
           [value]="acrobatics"
           color="green"
@@ -21,6 +23,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(animalHandiling(); as animalHandiling) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Animal Handiling"
           [value]="animalHandiling"
           color="yellow"
@@ -29,6 +33,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(arcana(); as arcana) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Arcana"
           [value]="arcana"
           color="blue"
@@ -37,6 +43,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(athletics(); as athletics) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Athletics"
           [value]="athletics"
           color="red"
@@ -45,6 +53,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(deception(); as deception) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Deception"
           [value]="deception"
           color="purple"
@@ -53,6 +63,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(history(); as history) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="History"
           [value]="history"
           color="blue"
@@ -61,6 +73,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(insight(); as insight) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Insight"
           [value]="insight"
           color="yellow"
@@ -69,6 +83,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(intimidation(); as intimidation) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Intimidation"
           [value]="intimidation"
           color="purple"
@@ -77,6 +93,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(investigation(); as investigation) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Investigation"
           [value]="investigation"
           color="blue"
@@ -85,6 +103,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(medicine(); as medicine) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Medicine"
           [value]="medicine"
           color="yellow"
@@ -93,6 +113,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(nature(); as nature) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Nature"
           [value]="nature"
           color="blue"
@@ -101,6 +123,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(perception(); as perception) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Perception"
           [value]="perception"
           color="yellow"
@@ -109,6 +133,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(performance(); as performance) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Performance"
           [value]="performance"
           color="purple"
@@ -117,6 +143,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(persuasion(); as persuasion) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Persuasion"
           [value]="persuasion"
           color="purple"
@@ -125,6 +153,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(religion(); as religion) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Religion"
           [value]="religion"
           color="blue"
@@ -133,6 +163,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(sleightOfHand(); as sleightOfHand) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Sleight of Hand"
           [value]="sleightOfHand"
           color="green"
@@ -141,6 +173,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(stealth(); as stealth) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Stealth"
           [value]="stealth"
           color="green"
@@ -149,6 +183,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(survival(); as survival) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="survival"
           [value]="survival"
           color="yellow"
@@ -160,6 +196,7 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
   styles: [],
 })
 export class MonsterSkillsComponent {
+  monsterName = input<string>();
   str = input<Monster['strength']>();
   dex = input<Monster['dexterity']>();
   con = input<Monster['constitution']>();

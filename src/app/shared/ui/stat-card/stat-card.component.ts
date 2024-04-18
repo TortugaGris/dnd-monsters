@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
+import { AddDiceRollItem, DiceRollerService } from 'src/app/dice-roller/data-access/dice-roller.service';
 
 type ColorKey = 'red' | 'green' | 'orange' | 'blue' | 'yellow' | 'purple';
 
@@ -10,7 +11,11 @@ type ColorKey = 'red' | 'green' | 'orange' | 'blue' | 'yellow' | 'purple';
     CommonModule,
   ],
   template: `
-    <div class="p-2 rounded-2xl bg-gray-900 flex gap-2">
+    <div
+      class="p-2 rounded-2xl bg-gray-900 flex gap-2"
+      [ngClass]="{'hover:bg-gray-800 cursor-pointer': isRollable()}"
+      (click)="roll(value())"
+    >
       @if(svg(); as svg) {
         <div class="size-20 rounded-xl" [ngClass]="colorMap[color()]">
           <img class="w-full" [src]="svg"/>
@@ -25,7 +30,9 @@ type ColorKey = 'red' | 'green' | 'orange' | 'blue' | 'yellow' | 'purple';
   styles: [],
 })
 export class StatCardComponent {
+  creature = input<string>();
   title = input('');
+  isRollable = input(false);
   value = input<string | number>('');
   color = input<ColorKey>('red');
   svg = input<string>();
@@ -38,4 +45,24 @@ export class StatCardComponent {
     yellow: 'bg-yellow-500',
     purple: 'bg-purple-500',
   };
+
+  constructor(
+    private readonly diceRollerService: DiceRollerService,
+  ) {}
+
+  roll(value: string | number) {
+    if(!this.isRollable()) return;
+    if(typeof value === 'number') return;
+    const addDiceRollItem: AddDiceRollItem = {
+      name: this.creature() ?? '',
+      rollName: this.title(),
+      diceRoll: [
+        {
+          roll: 'd20'+value,
+          type: null,
+        }
+      ],
+    }
+    this.diceRollerService.roll$.next(addDiceRollItem);
+  }
 }

@@ -52,9 +52,7 @@ export class ActionCardComponent {
 
   constructor(
     private readonly diceRollerService: DiceRollerService,
-  ) {
-
-  }
+  ) {}
 
   valToString(val: number): string {
     return val >=0 ? '+'+val : val.toString();

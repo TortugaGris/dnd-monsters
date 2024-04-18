@@ -13,6 +13,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
     <div class="flex flex-wrap gap-4">
       @if(strength(); as str) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Strength"
           [value]="str"
           color="red"
@@ -21,6 +23,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(dexterity(); as dex) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Dexterity"
           [value]="dex"
           color="green"
@@ -29,6 +33,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(constitution(); as con) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Constitution"
           [value]="con"
           color="orange"
@@ -37,6 +43,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(intelligence(); as int) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Intelligence"
           [value]="int"
           color="blue"
@@ -45,6 +53,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(wisdom(); as wis) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Wisdom"
           [value]="wis"
           color="yellow"
@@ -53,6 +63,8 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
       }
       @if(charisma(); as char) {
         <app-stat-card
+          [creature]="monsterName()"
+          [isRollable]="true"
           title="Charisma"
           [value]="char"
           color="purple"
@@ -64,6 +76,7 @@ import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.compone
   styles: [],
 })
 export class MonsterSavingThrowsComponent {
+  monsterName = input<string>();
   str = input<Monster['strength']>();
   dex = input<Monster['dexterity']>();
   con = input<Monster['constitution']>();
