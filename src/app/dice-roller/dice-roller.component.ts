@@ -4,7 +4,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { diceRollValidator } from './utils/dice-roller.validator';
-import { DiceRollerService } from './data-access/dice-roller.service';
+import { DiceRollerService, AddDiceRollItem, AddDiceRoll } from './data-access/dice-roller.service';
 
 @Component({
   selector: 'app-dice-roller',
@@ -83,8 +83,13 @@ export class DiceRollerComponent {
   roll() {
     if(this.diceRoll.invalid) return;
     const diceRoll = this.diceRoll.value;
-    console.log('Component: ', diceRoll);
-    if(diceRoll !== null) this.diceRollerService.roll$.next(diceRoll);
+    if(diceRoll === null) return;
+    const addDiceRollItem: AddDiceRollItem = {
+      name: 'Dice Roll',
+      rollName: diceRoll,
+      diceRoll: diceRoll.split(/[()]+/).filter((e: string) => e).map((e:string): AddDiceRoll => ({roll: e, type: null})),
+    }
+    this.diceRollerService.roll$.next(addDiceRollItem);
     this.diceRoll.setValue('');
   }
 }
