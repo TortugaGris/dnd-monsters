@@ -37,6 +37,7 @@ import { ActionCardComponent } from '../shared/ui/action-card/action-card.compon
             [speed]="monster.speed"
           />
           <app-monster-saving-throws
+            [monsterName]="monster.name"
             [str]="monster.strength"
             [dex]="monster.dexterity"
             [con]="monster.constitution"
@@ -54,6 +55,7 @@ import { ActionCardComponent } from '../shared/ui/action-card/action-card.compon
             [languages]="monster.languages"
           />
           <app-monster-skills
+            [monsterName]="monster.name"
             [str]="monster.strength"
             [dex]="monster.dexterity"
             [con]="monster.constitution"

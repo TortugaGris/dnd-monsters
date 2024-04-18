@@ -52,15 +52,14 @@ export class ActionCardComponent {
 
   constructor(
     private readonly diceRollerService: DiceRollerService,
-  ) {
-
-  }
+  ) {}
 
   valToString(val: number): string {
     return val >=0 ? '+'+val : val.toString();
   }
 
   roll(attackBonus: number | undefined, dmg: Damage[] | undefined) {
+    if(attackBonus === undefined && dmg === undefined) return;
     const addDiceRollItem: AddDiceRollItem = {
       name: this.creature() ?? '',
       rollName: this.name() ?? '',
@@ -68,27 +67,21 @@ export class ActionCardComponent {
     }
 
     if (attackBonus !== undefined) {
+      const addedNum = attackBonus > 0 ? '+'+attackBonus.toString() : (attackBonus < 0 ? attackBonus.toString() : '');
       addDiceRollItem.diceRoll.push({
-        numDices: 1,
-        sides: 20,
-        addedNum: attackBonus,
+        roll: 'd20'+addedNum,
         type: 'To hit',
       });
     }
 
     if(dmg !== undefined) {
       dmg.forEach((d) => {
-        const regexp = /[\+\-]\d+|(\d+)?d(\d+)([\+\-]\d+)?/
-        const match = regexp.exec(d.damage_dice);
-        if(match === null) return;
         addDiceRollItem.diceRoll.push({
-          numDices: match[1] ? parseInt(match[1]) : 1,
-          sides: parseInt(match[2]),
-          addedNum: match[3] ? parseInt(match[3]) : 0,
+          roll: d.damage_dice,
           type: d.damage_type.name,
         });
       })
     }
-    this.diceRollerService.add$.next(addDiceRollItem);
+    this.diceRollerService.roll$.next(addDiceRollItem);
   }
 }
