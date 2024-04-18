@@ -61,6 +61,7 @@ export class ActionCardComponent {
   }
 
   roll(attackBonus: number | undefined, dmg: Damage[] | undefined) {
+    if(attackBonus === undefined && dmg === undefined) return;
     const addDiceRollItem: AddDiceRollItem = {
       name: this.creature() ?? '',
       rollName: this.name() ?? '',
