@@ -12,6 +12,8 @@ It uses [D&D 5e API](https://www.dnd5eapi.co) to access the monsters data.
 ## Next Features 
 - Search bar to search for monsters.
 - Hightlight proficiencies in saving throws and skills.
+- Light mode
+- Movil view
 
 ## Development
 

@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { DiceTwentyFacesTwentyComponent } from '../svg/dice-twenty-faces-twenty/dice-twenty-faces-twenty.component';
-import { DC, Damage } from 'src/app/home/interfaces/monster.interface';
+import { DC, Damage } from 'src/app/monster/interfaces/monster.interface';
 import { CommonModule } from '@angular/common';
 import { AddDiceRollItem, DiceRollerService } from 'src/app/dice-roller/data-access/dice-roller.service';
 
