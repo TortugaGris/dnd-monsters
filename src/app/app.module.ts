@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DiceRollerComponent } from './dice-roller/dice-roller.component';
+import { SearchBarComponent } from './shared/ui/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { DiceRollerComponent } from './dice-roller/dice-roller.component';
     HttpClientModule,
     FontAwesomeModule,
     DiceRollerComponent,
+    SearchBarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
