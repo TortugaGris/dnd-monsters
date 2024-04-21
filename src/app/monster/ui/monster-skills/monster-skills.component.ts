@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { Monster } from 'src/app/home/interfaces/monster.interface';
+import { Monster } from '../../interfaces/monster.interface';
 import { StatCardComponent } from 'src/app/shared/ui/stat-card/stat-card.component';
 
 @Component({

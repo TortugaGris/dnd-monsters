@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Monster } from '../home/interfaces/monster.interface';
+import { Monster } from './interfaces/monster.interface';
 import { TitleCasePipe } from '@angular/common';
 import { MonsterHealthComponent } from './ui/monster-health/monster-health.component';
 import { MonsterSpeedComponent } from './ui/monster-speed/monster-speed.component';

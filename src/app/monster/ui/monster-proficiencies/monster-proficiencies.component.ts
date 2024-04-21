@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { Monster } from 'src/app/home/interfaces/monster.interface';
+import { Monster } from '../../interfaces/monster.interface';
 import { ProficiencyCardComponent } from 'src/app/shared/ui/proficiency-card/proficiency-card.component';
 
 @Component({

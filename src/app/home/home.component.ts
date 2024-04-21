@@ -1,11 +1,12 @@
 import { Component, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MonsterService } from './data-access/monster.service';
+import { MonsterService } from '../monster/data-access/monster.service';
 import { JsonPipe } from '@angular/common';
 import { MonsterComponent } from '../monster/monster.component';
 import { DiceRollerComponent } from '../dice-roller/dice-roller.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
+import { DiceRollerService } from '../dice-roller/data-access/dice-roller.service';
 
 @Component({
   selector: 'app-home',
@@ -18,27 +19,17 @@ import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
     FontAwesomeModule,
   ],
   template: `
-    <div class="w-full h-screen flex">
-      @if(!isOpen){
-        <button class="border-2 py-1 px-2 border-gray-800 rounded m-2 text-gray-800 absolute right-0" (click)="isOpen = !isOpen">
-          <fa-icon [icon]="icons.arrow"></fa-icon>
-        </button>
-      }
-      <div class="w-full overflow-scroll no-scrollbar">
-        <main class="container mx-auto">
-          @if(monsterItem(); as monsterItem) {
-            <div class="px-4 pb-4">
-              <app-monster [monster]="monsterItem"></app-monster>
-            </div>
-          }
-        </main>
-        <div class="w-full bg-gray-900 p-8 text-gray-500 text-center">
-          Icons created by Lorc, Delapouite & contributors (<a class="underline" href="https://game-icons.net/">game-icons.net</a>)
-          licensed under <a class="underline" href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
-        </div>
+    @if(monsterItem(); as monsterItem) {
+      <div class="px-4 pb-4">
+        <app-monster [monster]="monsterItem"></app-monster>
+        <!--
+        <pre class="bg-gray-900 rounded-2xl p-4 my-4">{{monsterItem.special_abilities | json}}</pre>
+        <pre class="bg-gray-900 rounded-2xl p-4 my-4">{{monsterItem.actions | json}}</pre>
+        <pre class="bg-gray-900 rounded-2xl p-4 my-4">{{monsterItem.reactions | json}}</pre>
+        <pre class="bg-gray-900 rounded-2xl p-4 my-4">{{monsterItem.legendary_actions | json}}</pre>
+        -->
       </div>
-      <app-dice-roller [(isOpen)]="isOpen"/>
-    </div>
+    }
   `,
   styles: [],
 })
@@ -46,7 +37,7 @@ export class HomeComponent {
   monsters = this.monsterService.monsters;
   monsterList = this.monsterService.monsterList;
   isLoaded = this.monsterService.isLoaded;
-  isOpen = true;
+  isOpen = this.diceRollerService.isOpen;
   icons = {
     arrow: faArrowLeft,
   }
@@ -71,7 +62,6 @@ export class HomeComponent {
 
   constructor(
     private readonly monsterService: MonsterService,
-  ) {
-  }
-
+    public readonly diceRollerService: DiceRollerService,
+  ) {}
 }
